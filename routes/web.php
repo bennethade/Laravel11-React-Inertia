@@ -17,6 +17,8 @@ use Inertia\Inertia;
 //     ]);
 // });
 
+//
+
 
 Route::redirect('/', '/dashboard');
 
