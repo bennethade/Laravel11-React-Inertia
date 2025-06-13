@@ -6,14 +6,15 @@ import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Create(auth) {
+export default function Create(auth, project) {
 
     const { data, setData, post, errors, reset } = useForm({
         image: "",
-        name: "",
-        status: "",
-        description: "",
-        due_date: ""
+        image_path: project.image_path || "",
+        name: project.name || "",
+        status: project.status || "",
+        description: project.description || "",
+        due_date: project.due_date || ""
     })
 
     const onSubmit = (e) => {
@@ -29,7 +30,7 @@ export default function Create(auth) {
             header={
                 <div className="flex justify-between items-center">
                     <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                        Create New Project
+                        Edit Project "{project.name}"
                     </h2>
 
                 </div>
