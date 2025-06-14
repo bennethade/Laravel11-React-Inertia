@@ -6,7 +6,7 @@ import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Create(auth) {
+export default function Create({ auth }) {
 
     const { data, setData, post, errors, reset } = useForm({
         image: "",

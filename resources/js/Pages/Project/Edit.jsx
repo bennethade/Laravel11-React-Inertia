@@ -6,21 +6,21 @@ import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Create(auth, project) {
+export default function Edit({ auth, project }) {
 
     const { data, setData, post, errors, reset } = useForm({
         image: "",
-        image_path: project.image_path || "",
         name: project.name || "",
         status: project.status || "",
         description: project.description || "",
-        due_date: project.due_date || ""
-    })
+        due_date: project.due_date || "",
+        _method: 'PUT',
+    });
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        post(route("project.store"));
+        post(route("project.update", project.id));
     }
 
 
@@ -44,6 +44,15 @@ export default function Create(auth, project) {
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <form onSubmit={onSubmit} className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+
+                            {/* <pre>{JSON.stringify(data, undefined, 2)}</pre> */}
+
+                            {project.image_path &&
+                                <div className="mb-4">
+                                    <img src={project.image_path} className="w-64" />
+                                </div>
+                            }
+
                             <div>
                                 <InputLabel htmlFor="project_image_path" value="Project Image" />
 
@@ -83,7 +92,7 @@ export default function Create(auth, project) {
                                     className="mt-1 block w-full"
                                     onChange={e => setData('description', e.target.value)}
                                 />
-                                <InputError message={errors.name} className="mt-2" />
+                                <InputError message={errors.description} className="mt-2" />
                             </div>
 
                             <div className="mt-4">
