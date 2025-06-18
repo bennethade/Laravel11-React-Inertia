@@ -26,8 +26,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
 
     Route::resource('project', ProjectController::class);
+    Route::get('task/my_tasks', [TaskController::class, 'myTasks'])->name('task.myTasks');   /// Put this line before the other task routes
     Route::resource('task', TaskController::class);
     Route::resource('user', UserController::class);
+    
 });
 
 

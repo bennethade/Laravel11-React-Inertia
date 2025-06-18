@@ -4,7 +4,7 @@ import { Head } from "@inertiajs/react";
 import TasksTable from "../Task/TasksTable";
 
 
-export default function show({ auth, project, tasks, queryParams }) {
+export default function show({ auth, success, project, tasks, queryParams }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -92,7 +92,7 @@ export default function show({ auth, project, tasks, queryParams }) {
 
                         <div className="p-6 text-gray-900 dark:text-gray-100">
 
-                            <TasksTable tasks={tasks} queryParams={queryParams} hideProjectColumn={true} />
+                            <TasksTable tasks={tasks} success={success} queryParams={queryParams} hideProjectColumn={true} />
 
                         </div>
                     </div>
